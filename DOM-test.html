@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <script>
+      window.onload = function() {
+        let h1 = document.createElement('h1');
+        let h1Text = document.createTextNode('Oh herro');
+        h1.appendChild(h1Text);
+        document.body.appendChild(h1);
+        window.alert('h1 created');
+      }
+      function myAlert() {
+        window.alert('Test header clicked!');
+      }
+      function myChange() {
+        document.getElementById("demo").innerHTML = "Paragraph changed.";
+      }
+      function myChange2() {
+        document.getElementById('demo2').innerHTML = 'Text changed!';
+      }
+    </script>
+  </head>
+  <body>
+      <h1 id="testHead" onclick="myAlert()">Test Header</h1>
+      <p id="demo">A Paragraph</p>
+      <button type="button" onclick="myChange()">Try it</button>
+      <p id='demo2'>Another paragraph</p>
+      <button type='button' onclick="myChange2()">Do it</button>
+  </body>
+</html>
+<!--
+<html>
+  <head>
+    <script>
+       // run this function when the document is loaded
+       window.onload = function() {
+
+         // create a couple of elements in an otherwise empty HTML page
+         var heading = document.createElement("h1");
+         var heading_text = document.createTextNode("Big Head!");
+         heading.appendChild(heading_text);
+         document.body.appendChild(heading);
+      }
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
+-->
