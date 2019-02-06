@@ -27,6 +27,8 @@ DOM and JavaScript: JavaScript uses the DOM as a model or notion of web pages, H
 parts(elements). Every element in a document is part of the Document Object Model for that document and can be accessed and manipulated
 using the DOM and a scripting language like JavaScript.
 
+Basic DOM tasks: Querying DOM, modifying DOM elements, modifying classes and attributes, listening to events, and animation.
+
 
 
 
