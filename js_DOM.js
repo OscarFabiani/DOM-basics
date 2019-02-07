@@ -7,6 +7,7 @@ methods to access all HTML elements, and events for all HTML elements.
 
 DOM navigation: An HTML page is represented as a node tree with the document itself as the root of the tree.
 
+
 Nodes: There are 6 different types of nodes in the DOM. These are the document node, root node, element node, text node, attribute node, and
 comment node.
 
