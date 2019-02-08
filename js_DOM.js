@@ -31,13 +31,27 @@ Comment node: All comments in the document.
 
 
 Node properties: The node interface/object's properties and methods are inherited by the document, element, text, comment, and attribute
-nodes. Some common node properties are nodeName, nodeValue, and nodeType which uses numbers as references(1 = element, etc.).
+nodes. Some common node properties are nodeName, nodeValue, and nodeType which uses numbers as references(1 = element, etc.). Properties that
+reference all types of nodes are childNodes, parentNode, firstChild, lastChild, nextSibling, and previousSibling.
 
-Document interface/object:
+
+DOCUMENT INTERFACE/OBJECT:
 
 DOCUMENT METHODS:
 
 document.createElement(tagName): creates an HTML element specified by tagName.
+
+
+ELEMENT INTERFACE/OBJECT:
+
+ELEMENT PROPERTIES:
+
+Element.children
+Element.firstElementChild
+Element.lastElementChild
+Element.previousElementSibling
+Element.nextElementSibling
+
 
 
 Common API's in web scripting using the DOM OR Common DOM methods:
