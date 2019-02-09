@@ -34,7 +34,7 @@ function log(msg) {
 
 let linkList = document.getElementById('list');
 linkList.children[0].addEventListener('click', myAlert2);
-log(linkList.children[0]);
+//log('linkList.children[0] = ' + linkList.children[0]);
 function myAlert2() {
   log(linkList); //logs [object HTMLUListElement]
   log(linkList.childNodes[0]); //logs [object Text]
@@ -56,4 +56,41 @@ function myAlert2() {
   log(linkList.firstElementChild.firstElementChild.className);
   log(linkList.firstElementChild.firstElementChild.getAttribute('class'));
 }
-myAlert2();
+//myAlert2();
+//Accessing and modifying HTML attributes through respective DOM element properties
+let elem1 = document.getElementById('elem1');
+log('elem1.outerHTML = ' + elem1.outerHTML)
+log('elem1.attributes = ' + elem1.attributes); //Using the attributes property which returns a NamedNodeMap object.
+log('elem1.attributes[0] = ' + elem1.attributes[0]);
+log('elem1.attributes[0].name = ' + elem1.attributes[0].name);
+log('elem1.attributes[0].value = ' + elem1.attributes[0].value);
+log('elem1.attributes[1].name = ' + elem1.attributes[1].name);
+log('elem1.attributes[1].value = ' + elem1.attributes[1].value);
+log('elem1.getAttribute("About") = ' + elem1.getAttribute('About'));
+elem1.setAttribute('test', 123);
+log('EXECUTED: elem1.setAttribute("test", 123)');
+log('elem1.outerHTML = ' + elem1.outerHTML);
+log(elem1.getAttribute('test')); //Using getElementById() which is best practice though seemingly not necessary.
+log(elem1.attributes[2].name);
+log(elem1.attributes[2].value);
+log('');
+elem1.attributes[2].name = 'test2'; //this doesn't work because the name property is read-only
+elem1.attributes[2].value = '456';
+log(elem1.attributes[2].name);
+log('elem1.outerHTML = ' + elem1.outerHTML);
+log(elem1.getAttribute('test'));
+log(elem1.attributes[2].name);
+log(elem1.attributes[2].value);
+log('');
+elem1.attributes[1].value = 'Monkey';
+log(elem1.attributes[1].value);
+log(elem1.getAttribute('about')); //This would log Elephant if the attribute was value
+log('');
+elem1.className = 'class1';
+log(elem1.className);
+log('');
+log(elem1.attributes); //a NamedNodeList object
+log(Array.prototype.slice.call(elem1.attributes)); //a list of attr objects
+log(elem1.getAttributeNames()); //a list of strings representing the name of each attribute
+log(elem1);
+log(document.getElementById('elem1'));
