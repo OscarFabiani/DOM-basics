@@ -17,10 +17,12 @@ function myAlert() {
   log(document.getElementById('start').nodeType); //logs 1
 }
 document.getElementById('testHead').addEventListener('click', myAlert); //The generally best method
+
 function myChange() {
   document.getElementById("demo").innerHTML = "Paragraph <em>changed</em>."; //innerHTML is needed here to parse HTML(slower).
 }
 document.getElementById("button1").onclick = myChange;
+
 function myChange2() {
   document.getElementById('demo2').textContent = 'Text changed!'; //testContent does not parse HTML(faster);
   document.getElementById('demo2').style.color = 'blue';
@@ -57,40 +59,71 @@ function myAlert2() {
   log(linkList.firstElementChild.firstElementChild.getAttribute('class'));
 }
 //myAlert2();
-//Accessing and modifying HTML attributes through respective DOM element properties
+
+
+//Accessing and modifying HTML attributes and respective DOM properties
+log('Accessing and modifying HTML attributes and respective DOM properties:')
 let elem1 = document.getElementById('elem1');
 log('elem1.outerHTML = ' + elem1.outerHTML)
+log('');
+
+//Accessing DOM attribute properties using Element.attributes property
+log('Accessing DOM attribute properties using Element.attributes property:');
 log('elem1.attributes = ' + elem1.attributes); //Using the attributes property which returns a NamedNodeMap object.
 log('elem1.attributes[0] = ' + elem1.attributes[0]);
 log('elem1.attributes[0].name = ' + elem1.attributes[0].name);
 log('elem1.attributes[0].value = ' + elem1.attributes[0].value);
-log('elem1.attributes[1].name = ' + elem1.attributes[1].name);
-log('elem1.attributes[1].value = ' + elem1.attributes[1].value);
-log('elem1.getAttribute("About") = ' + elem1.getAttribute('About'));
-elem1.setAttribute('test', 123);
-log('EXECUTED: elem1.setAttribute("test", 123)');
-log('elem1.outerHTML = ' + elem1.outerHTML);
-log(elem1.getAttribute('test')); //Using getElementById() which is best practice though seemingly not necessary.
-log(elem1.attributes[2].name);
-log(elem1.attributes[2].value);
-log('');
-elem1.attributes[2].name = 'test2'; //this doesn't work because the name property is read-only
-elem1.attributes[2].value = '456';
-log(elem1.attributes[2].name);
-log('elem1.outerHTML = ' + elem1.outerHTML);
-log(elem1.getAttribute('test'));
-log(elem1.attributes[2].name);
-log(elem1.attributes[2].value);
-log('');
-elem1.attributes[1].value = 'Monkey';
-log(elem1.attributes[1].value);
-log(elem1.getAttribute('about')); //This would log Elephant if the attribute was value
-log('');
+log('')
+
+//Setting, accessing, and changing a new standard attribute:
+log('Setting, accessing, and changing a new standard attribute:');
 elem1.className = 'class1';
-log(elem1.className);
+log("EXECUTED: elem1.className = 'class1'");
+log('elem1.className = ' + elem1.className);
+elem1.className = 'class2';
+log("EXECUTED: elem1.className = 'class2'");
+log('elem1.className = ' + elem1.className);
+log('elem1.outerHTML = ' + elem1.outerHTML);
 log('');
-log(elem1.attributes); //a NamedNodeList object
+
+//Accessing  and modifying a custom attribute:
+log('Accessing and modifying a custom attribute:');
+log('elem1.getAttribute("dAtA-cUsTom1") = ' + elem1.getAttribute('dAtA-cUsTom1'));
+log('elem1.dataset.custom1 = ' + elem1.dataset.custom1);
+elem1.dataset.custom1 = 'custVal2';
+log('EXECUTED: elem1.dataset.custom1 = "custVal2"')
+log('elem1.dataset.custom1 = ' + elem1.dataset.custom1);
+log('elem1.outerHTML = ' + elem1.outerHTML);
+log('');
+
+//Setting, accessing, and changing a new custom attribute:
+log('Setting, accessing, and changing a new custom attribute:');
+elem1.setAttribute('data-custom2', 'custVal3');
+log('EXECUTED: elem1.setAttribute("data-custom2", 123)');
+log('elem1.dataset.custom2 = ' + elem1.dataset.custom2);
+elem1.dataset.custom2 = 'custVal4';
+log("EXECUTED: elem1.dataset.custom2 = 'custVal4'");
+log('elem1.outerHTML = ' + elem1.outerHTML);
+log('elem1.dataset.custom2 = ' + elem1.dataset.custom2);
+log('elem1.outerHTML = ' + elem1.outerHTML);
+log('');
+
+//CONTINUE SORTING AND ORGANIZING BEFORE CONTINUING WITH SOUF TUTORIAL
 log(Array.prototype.slice.call(elem1.attributes)); //a list of attr objects
 log(elem1.getAttributeNames()); //a list of strings representing the name of each attribute
-log(elem1);
-log(document.getElementById('elem1'));
+log(elem1.attributes[3].name);
+delete elem1.attributes[3];
+log('');
+
+let elem2 = document.getElementById('elem2');
+log(elem2.outerHTML);
+elem2.removeAttribute('class');
+elem2.removeAttribute('title');
+log(elem2.outerHTML);
+if (elem2.align === '') {
+  log('true');
+}
+elem2.align = 'center';
+log(elem2.outerHTML);
+elem2.align = '';
+log(elem2.outerHTML);
