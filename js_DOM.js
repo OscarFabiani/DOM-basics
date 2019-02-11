@@ -29,10 +29,13 @@ Attribute node: Every HTML attribute.
 
 Comment node: All comments in the document.
 
+Window node: This is the browser tab.
+
 
 Node properties: The node interface/object's properties and methods are inherited by the document, element, text, comment, and attribute
 nodes. Some common node properties are nodeName, nodeValue, and nodeType which uses numbers as references(1 = element, etc.). Properties that
 reference all types of nodes are childNodes, parentNode, firstChild, lastChild, nextSibling, and previousSibling.
+
 
 
 NODE INTERFACE:
@@ -42,18 +45,38 @@ Properties:
 Node.nodeName
 Node.nodeValue
 Node.nodeType
-Node.childNodes
-Node.parentNode
-Node.firstChild
-Node.lastChild
-Node.nextSibling
-Node.previousSibling
+
+Node.parentNode: returns the parent Node of Node, else null.
+
+Node.childNodes: returns a live NodeList that contains all children of Node.
+
+Node.firstChild: returns the first child Node of Node, else Null.
+
+Node.lastChild: returns the last child Node of Node, else Null.
+
+Node.nextSibling: returns the next child Node of Node, else Null.
+
+Node.previousSibling: returns the previous child Node of Node, else Null.
+
 Node.textContent
 
 Methods:
 
 Node.appendChild()
 Node.removeChild()
+
+
+
+PARENTNODE MIXIN:
+
+ParentNode.children: returns a live HTMLCollection that contains all child Elements of ParentNode.
+
+ParentNode.firstElementChild: return the first Element node that is child of ParentNode.
+
+ParentNode.lastElementChild: return the last Element node that is child of ParentNode.
+
+ParentNode.querySelector();
+ParentNode.querySelectorAll();
 
 
 DOCUMENT INTERFACE:
@@ -67,23 +90,23 @@ NOTE: Browsers dump references to all elements with an id attribute into the glo
 property of the global object). This means it's possible to skip using getElementById() and instead referencing the element node by this
 property of the global object but this is not recommended as it can easily cause conflicts(no id causing an error, id's with dashes not
 retrievable, global variable names being overidden, etc.). 
-NOTE: This method is only available to the global document object(unlike Document.querySelector() or Document.querySelectorAll()) since id
+NOTE: This method is only available to the global document object(unlike document.querySelector() or document.querySelectorAll()) since id
 values are unique throughout the document.
+
+document.getElementsBysTagName(tagName): returns a live HTMLCollection that contains all elements of tagName.
+
+document.getElementsByClassName(classNames): returns a live HTMLCollection that contains all elements that possess classNames.
+NOTE: classNames is a space delimited list of class names.
+
+document.querySelector(selectors): returns the first element node within the document, in document order, that matches selectors(string).
+
+document.querySelectorAll(selectors): returns a NodeList of element nodes within the document which match the selectors(string).
 
 
 
 ELEMENT INTERFACE:
 
 Properties:
-
-ParentNode Mixin:
-Element.children
-Element.firstElementChild
-Element.lastElementChild
-
-Other:
-Element.previousElementSibling
-Element.nextElementSibling
 
 Element.className: A DOMString representing the class of the element.
 NOTE: This is a space-delimited string containing all classes. An alternative is to use Element.classList.
@@ -103,6 +126,9 @@ Element.outerHTML: A DOMString representing the markup of the element including 
 
 Element.attributes: returns a NamedNodeMap object containing the an attr object for each assigned attribute of the corresponding HTML element.
 
+Other:
+Element.previousElementSibling
+Element.nextElementSibling
 
 Methods:
 
@@ -110,7 +136,7 @@ Element.getElementsByClassName(classNames): returns a live HTMLCollection that c
 classNames.
 NOTE: classNames is a space delimited list of class names.
 
-Element.getElementsByTagName(tagName): returns a live HTMLCollection that containsall decendant elements of tagName.
+Element.getElementsByTagName(tagName): returns a live HTMLCollection that contains all decendant elements of tagName.
 
 Element.querySelector(selectors): returns the first node that matches selectors(string) relative to the element.
 
@@ -170,13 +196,26 @@ NOTE: Multi-word styles(seperated by hyphens) are converted to camelCasing when 
 style.backgroundColor)
 
 
-//FINISH ORGANIZING SCRIPT FOR ATTRIBUTES BEFORE CONTINUING WITH SOFT TUTORIAL AND QUESTIONS
+//CONTINUE WITH SOFT TUTORIAL BEFORE ADDING NOTES AND EXAMPLES FOR SELECTORS, DOM TRAVERSING, ADDING AND REMOVING NODES, EVENTS, ETC.
+
+
+TO DO:
+Add updated notes and script examples for querySelector() and querySelectorAll().
 
 QUESTIONS BEING ASKED:
+Is it almost always better to use ParentNode.children() and it's company instead of Node.childNodes() and its company to avoid nodes
+like text nodes due to empty whitespace?
+General - how to best traverse/navigate/walk the DOM(parent, child, sibling, etc)?
+What's the difference between Node.appendChild() and ParentNode.append()? --Found in ParentNode.append() MDN
 Is it better to use the element specific child properties or the node properties?
 Do I have a basic overview of the most common uses of the DOM? 
 Have I demonstrated all of these in my DOM-test project?
 Am I ready to move on to creating a project(s) utilizing DOM/Vanilla.JS?
+
+
+querySelector() basically: This method matches an element with one or more CSS selectors and thus can do the job of getElementById(),
+getElementsByClassName(), getElementsByTagName() and more including much more specific criteria using the robuts selectors API.
+
 
 SIDE TOPICS:
 
@@ -208,30 +247,29 @@ property is a boolean, style property is an object) while attribute values are a
 
 Common API's in web scripting using the DOM OR Common DOM methods/properties:
 
-document.getElementById(id)
-document.getElementsByClassName(name)
-document.getElementsByTagName(name)
-document/element.querySelector(selector)
-document/element.querySelectorAll(selector)
-document.createElement(name)
-parentNode.appendChild(node)
-element.innerHTML
 element.style.left
-element.addEventListener()
 window.content
 window.onload
 console.log()
 window.scrollTo()
 
 
-onclick HTML property vs addEventListener in JavaScirpt: It seems like using addEventListener is a better method.
+onclick HTML property vs addEventListener in JavaScript: It seems like using addEventListener is a better method.
 
 
 
 
 QUESTION FOR STACKOVERFLOW:
 
-Why doesn't setting a standard attribute's DOM property to an empty string remove the attribute like Element.removeAttribute() does?
+From MDN removeAttribute():
+"Note: Since removeAttribute() doesn't return a value, you can't chain multiple calls together to remove multiple attributes at once."
+How is this done?
+
+Why doesn't setting a standard attribute's DOM property to an empty string remove the attribute like Element.removeAttribute() does? What else
+is removeAttribute() doing?
+
+I've learned that it's generally best to use DOM properties to set, access, and modify attributes which has lead me to avoid using
+setAttribute() and getAttribute(). Is there a similar way to remove DOM attribute properties without using removeAttribute()?
 
 
 HTML:
@@ -240,9 +278,7 @@ HTML:
 JS:
 let el = document.getElementById('el');
 console.log(el.outerHTML); //<div id='el'></div>
-if (el.align === '') {
-  console.log(true); //this logs true
-}
+console.log(el.align === ''); //true
 el.align = 'center';
 console.log(el.outerHTML); //<div id="el" align="center"></div>
 el.align = '';

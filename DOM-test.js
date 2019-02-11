@@ -60,70 +60,64 @@ function myAlert2() {
 }
 //myAlert2();
 
+function logAttributeNotes() {
+  //Accessing and modifying HTML attributes and respective DOM properties
+  log('Accessing and modifying HTML attributes and respective DOM properties:')
+  let elem1 = document.getElementById('elem1');
+  log('elem1.outerHTML = ' + elem1.outerHTML)
+  log('');
 
-//Accessing and modifying HTML attributes and respective DOM properties
-log('Accessing and modifying HTML attributes and respective DOM properties:')
-let elem1 = document.getElementById('elem1');
-log('elem1.outerHTML = ' + elem1.outerHTML)
-log('');
+  //Accessing DOM attribute properties using Element.attributes property
+  log('Accessing DOM attribute properties using Element.attributes property:');
+  log('elem1.attributes = ' + elem1.attributes); //Using the attributes property which returns a NamedNodeMap object.
+  log('elem1.attributes[0] = ' + elem1.attributes[0]);
+  log('elem1.attributes[0].name = ' + elem1.attributes[0].name);
+  log('elem1.attributes[0].value = ' + elem1.attributes[0].value);
+  log('Array.prototype.slice.call(elem1.attributes) = ' + Array.prototype.slice.call(elem1.attributes));
+  log('')
 
-//Accessing DOM attribute properties using Element.attributes property
-log('Accessing DOM attribute properties using Element.attributes property:');
-log('elem1.attributes = ' + elem1.attributes); //Using the attributes property which returns a NamedNodeMap object.
-log('elem1.attributes[0] = ' + elem1.attributes[0]);
-log('elem1.attributes[0].name = ' + elem1.attributes[0].name);
-log('elem1.attributes[0].value = ' + elem1.attributes[0].value);
-log('')
+  //Setting, accessing, and modifying a new standard attribute:
+  log('Setting, accessing, and modifying a new standard attribute:');
+  elem1.className = 'class1';
+  log("EXECUTED: elem1.className = 'class1'");
+  log('elem1.className = ' + elem1.className);
+  elem1.className = 'class2';
+  log("EXECUTED: elem1.className = 'class2'");
+  log('elem1.className = ' + elem1.className);
+  log('elem1.outerHTML = ' + elem1.outerHTML);
+  log('');
 
-//Setting, accessing, and changing a new standard attribute:
-log('Setting, accessing, and changing a new standard attribute:');
-elem1.className = 'class1';
-log("EXECUTED: elem1.className = 'class1'");
-log('elem1.className = ' + elem1.className);
-elem1.className = 'class2';
-log("EXECUTED: elem1.className = 'class2'");
-log('elem1.className = ' + elem1.className);
-log('elem1.outerHTML = ' + elem1.outerHTML);
-log('');
+  //Accessing and modifying a custom attribute:
+  log('Accessing and modifying a custom attribute:');
+  log('elem1.getAttribute("dAtA-cUsTom1") = ' + elem1.getAttribute('dAtA-cUsTom1'));
+  log('elem1.dataset.custom1 = ' + elem1.dataset.custom1);
+  elem1.dataset.custom1 = 'custVal2';
+  log('EXECUTED: elem1.dataset.custom1 = "custVal2"')
+  log('elem1.dataset.custom1 = ' + elem1.dataset.custom1);
+  log('elem1.outerHTML = ' + elem1.outerHTML);
+  log('');
 
-//Accessing  and modifying a custom attribute:
-log('Accessing and modifying a custom attribute:');
-log('elem1.getAttribute("dAtA-cUsTom1") = ' + elem1.getAttribute('dAtA-cUsTom1'));
-log('elem1.dataset.custom1 = ' + elem1.dataset.custom1);
-elem1.dataset.custom1 = 'custVal2';
-log('EXECUTED: elem1.dataset.custom1 = "custVal2"')
-log('elem1.dataset.custom1 = ' + elem1.dataset.custom1);
-log('elem1.outerHTML = ' + elem1.outerHTML);
-log('');
+  //Setting, accessing, and modifying a new custom attribute:
+  log('Setting, accessing, and modifying a new custom attribute:');
+  elem1.dataset.custom2 = 'custVal3';
+  log("EXECUTED: elem1.dataset.custom2 = 'custVal3'");
+  log('elem1.dataset.custom2 = ' + elem1.dataset.custom2);
+  elem1.dataset.custom2 = 'custVal4';
+  log("EXECUTED: elem1.dataset.custom2 = 'custVal4'");
+  log('elem1.dataset.custom2 = ' + elem1.dataset.custom2);
+  log('elem1.outerHTML = ' + elem1.outerHTML);
+  log('');
 
-//Setting, accessing, and changing a new custom attribute:
-log('Setting, accessing, and changing a new custom attribute:');
-elem1.setAttribute('data-custom2', 'custVal3');
-log('EXECUTED: elem1.setAttribute("data-custom2", 123)');
-log('elem1.dataset.custom2 = ' + elem1.dataset.custom2);
-elem1.dataset.custom2 = 'custVal4';
-log("EXECUTED: elem1.dataset.custom2 = 'custVal4'");
-log('elem1.outerHTML = ' + elem1.outerHTML);
-log('elem1.dataset.custom2 = ' + elem1.dataset.custom2);
-log('elem1.outerHTML = ' + elem1.outerHTML);
-log('');
-
-//CONTINUE SORTING AND ORGANIZING BEFORE CONTINUING WITH SOUF TUTORIAL
-log(Array.prototype.slice.call(elem1.attributes)); //a list of attr objects
-log(elem1.getAttributeNames()); //a list of strings representing the name of each attribute
-log(elem1.attributes[3].name);
-delete elem1.attributes[3];
-log('');
-
-let elem2 = document.getElementById('elem2');
-log(elem2.outerHTML);
-elem2.removeAttribute('class');
-elem2.removeAttribute('title');
-log(elem2.outerHTML);
-if (elem2.align === '') {
-  log('true');
+  //Removing attributes:
+  log('Removing attributes:')
+  log('elem1.outerHTML = ' + elem1.outerHTML);
+  elem1.removeAttribute('id');
+  elem1.removeAttribute('class');
+  elem1.removeAttribute('data-custom1');
+  elem1.removeAttribute('data-custom2');
+  log("EXECUTED: elem1.removeAttribute('id');")
+  log("EXECUTED: elem1.removeAttribute('class');")
+  log("EXECUTED: elem1.removeAttribute('data-custom1');")
+  log("EXECUTED: elem1.removeAttribute('data-custom2');")
+  log('elem1.outerHTML = ' + elem1.outerHTML);
 }
-elem2.align = 'center';
-log(elem2.outerHTML);
-elem2.align = '';
-log(elem2.outerHTML);
