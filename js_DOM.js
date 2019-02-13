@@ -58,16 +58,20 @@ Node.nextSibling: returns the next child Node of Node, else Null.
 
 Node.previousSibling: returns the previous child Node of Node, else Null.
 
-Node.textContent
+Node.textContent:
+NOTE: While HTMLElement.innerText is similar though different in ways that may be useful at times, it is not as standardized
 
 Methods:
 
 Node.appendChild()
+Node.insertBefore()
+Node.replaceChild()
 Node.removeChild()
+Node.cloneNode()
 
 
 
-PARENTNODE MIXIN:
+PARENTNODE MIXIN: Generally better than Node.childNodes/firstChild/lastChild()?
 
 ParentNode.children: returns a live HTMLCollection that contains all child Elements of ParentNode.
 
@@ -114,7 +118,8 @@ NOTE: This is a space-delimited string containing all classes. An alternative is
 Element.classList: Returns a DOMTokenList containing the list of class attributes.
 NOTE: While this DOMTokenList has methods that can modify classes it is not yet supported in IEv10 and below. An alternative to modifying
 classes is to use className in conjuction with space-delimited lists, string concatenation, and regular expressions to replicate the
-functionality of DOMTokenList methods.
+functionality of DOMTokenList methods. This alterntive is on it's way outt. Another alternative is to use a polyfill in conjuction wit
+DOMTokenList methods.
 
 Element.id: A DOMString representing the id of the element.
 
@@ -126,9 +131,9 @@ Element.outerHTML: A DOMString representing the markup of the element including 
 
 Element.attributes: returns a NamedNodeMap object containing the an attr object for each assigned attribute of the corresponding HTML element.
 
-Other:
-Element.previousElementSibling
-Element.nextElementSibling
+Element.previousElementSibling:
+
+Element.nextElementSibling:
 
 Methods:
 
@@ -188,27 +193,25 @@ Methods:
 
 DOMTokenList.add()
 DOMTokenList.remove()
-DOMTokenList.conatins()
+DOMTokenList.contains()
+DOMTokenList.toggle()
+DOMTokenList.replace()
 
 
-STYLE OBJECT:
+
+STYLE PROPERTY/OBJECT:
 NOTE: Multi-word styles(seperated by hyphens) are converted to camelCasing when set as properties of the style object(background-color becomes
 style.backgroundColor)
 
 
-//CONTINUE WITH SOFT TUTORIAL BEFORE ADDING NOTES AND EXAMPLES FOR SELECTORS, DOM TRAVERSING, ADDING AND REMOVING NODES, EVENTS, ETC.
+//ADDRESS TODO - CONTINUE FROM ELEMENT PROPERTIES FUNCTION
 
 
 TO DO:
-Add updated notes and script examples for querySelector() and querySelectorAll().
+Add notes and examples for creating, adding, modifying, and removing nodes.
+Add notes and examples for events.
 
 QUESTIONS BEING ASKED:
-Is it almost always better to use ParentNode.children() and it's company instead of Node.childNodes() and its company to avoid nodes
-like text nodes due to empty whitespace?
-General - how to best traverse/navigate/walk the DOM(parent, child, sibling, etc)?
-What's the difference between Node.appendChild() and ParentNode.append()? --Found in ParentNode.append() MDN
-Is it better to use the element specific child properties or the node properties?
-Do I have a basic overview of the most common uses of the DOM? 
 Have I demonstrated all of these in my DOM-test project?
 Am I ready to move on to creating a project(s) utilizing DOM/Vanilla.JS?
 
@@ -218,6 +221,8 @@ getElementsByClassName(), getElementsByTagName() and more including much more sp
 
 
 SIDE TOPICS:
+
+Selector API: The selector passed into querySelector() can be a complex DOMString that can select specific elements through many parameters.
 
 Utility of custom attributes: Regarding styling, modifying attributes is sometimes easier than modifying classes. Regarding scripting, custom
 attributes can be used to "mark" elements for JavaScript.
@@ -244,45 +249,7 @@ property is a boolean, style property is an object) while attribute values are a
 
 
 
-
-Common API's in web scripting using the DOM OR Common DOM methods/properties:
-
-element.style.left
-window.content
-window.onload
-console.log()
-window.scrollTo()
-
-
 onclick HTML property vs addEventListener in JavaScript: It seems like using addEventListener is a better method.
-
-
-
-
-QUESTION FOR STACKOVERFLOW:
-
-From MDN removeAttribute():
-"Note: Since removeAttribute() doesn't return a value, you can't chain multiple calls together to remove multiple attributes at once."
-How is this done?
-
-Why doesn't setting a standard attribute's DOM property to an empty string remove the attribute like Element.removeAttribute() does? What else
-is removeAttribute() doing?
-
-I've learned that it's generally best to use DOM properties to set, access, and modify attributes which has lead me to avoid using
-setAttribute() and getAttribute(). Is there a similar way to remove DOM attribute properties without using removeAttribute()?
-
-
-HTML:
-<div id=el></div>
-
-JS:
-let el = document.getElementById('el');
-console.log(el.outerHTML); //<div id='el'></div>
-console.log(el.align === ''); //true
-el.align = 'center';
-console.log(el.outerHTML); //<div id="el" align="center"></div>
-el.align = '';
-log(elem2.outerHTML); //<div id="el" align=""></div>
 
 
 

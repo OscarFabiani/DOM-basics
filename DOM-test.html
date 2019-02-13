@@ -2,26 +2,20 @@
   <head>
     <link rel="stylesheet" type="text/css" href="DOM-test.css" />
   </head>
-  <body style="text-align: center">
-    <h1 id="testHead"><u>Display Log</u></h1>
+  <body>
+    <h1 id="testHead" class="testClass"><u>Display Log</u></h1>
+    <hr>
+    <div id="output"></div>
+    <hr>
+    <div id="1">text1<div id="2"></div>text2<div id="3"></div></div>
+    <div id="4" class="class4 class5">text3</div>
+    <div id="elem1" data-custom1="custVal1"></div>
+    <div id="elem2" class="class3" title="titsle3"></div>
+    <hr>
     <p id="demo">A Paragraph</p>
     <button type="button" id="button1">Try it</button>
     <p id='demo2'>Another paragraph</p>
     <button type='button' onclick="myChange2()">Do it</button>
-    <hr>
-    <div id="output"></div>
-    <ul id="list" class="class1">
-      <li class="class2"><a href="#" class="class3">Link</a></li>
-    </ul>
-    <div id="elem1" data-custom1="custVal1"></div>
-    <div id="elem2" class="class3" title="titsle3"></div>
-    <hr>
-    <div class="container">
-      <h1><time>00:00:00</time></h1>
-      <button id="start">Start</button>
-      <button id="stop">Stop</button>
-      <button id="reset">Reset</button>
-    </div>
     <script type="text/javascript" src="DOM-test.js"></script>
   </body>
 </html>

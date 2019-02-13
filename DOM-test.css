@@ -1,9 +1,16 @@
 body {
   background-color: gray;
+  text-align: center;
 }
 #testHead {
   color: blue;
 }
 #testHead:hover {
   cursor: pointer;
+}
+.square {
+  margin: auto;
+  height: 50px;
+  width: 200px;
+  border: 10px solid black;
 }
