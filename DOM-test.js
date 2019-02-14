@@ -6,25 +6,14 @@ function log(msg) {
   output.appendChild(document.createElement('br'));
 }
 
-//Selecting Nodes
-function selectingNodes() {
-  output.innerHTML = '';
-  log('Display Log clicked!');
-  log('tested div: ' + document.getElementById('testHead').outerHTML);
-  log('document.getElementById("testHead").outerHTML = ' + document.getElementById('testHead').outerHTML);
-  log('document.getElementsByClassName("testClass")[0].outerHTML = ' + document.getElementsByClassName('testClass')[0].outerHTML);
-  log('document.getElementsByTagName("h1")[0].outerHTML = ' + document.getElementsByTagName('h1')[0].outerHTML);
-  log("document.querySelector('h1').outerHTML = " + document.querySelector('h1').outerHTML);
-  log("document.querySelectorAll('h1')[0].outerHTML = " +document.querySelectorAll('h1')[0].outerHTML);
-}
-document.getElementById('testHead').addEventListener('click', selectingNodes); //The generally best method.
-
 
 //Node properties
 function nodeProperties() {
   output.innerHTML = ''
   let div = document.getElementById('1');
   log('tested div: ' + div.outerHTML);
+  log('');
+  log('Node properties:');
   log('document.nodeName = ' + document.nodeName);
   log("document.nodeType = " + document.nodeType);
   log("div.nodeName = " + div.nodeName);
@@ -42,29 +31,52 @@ function nodeProperties() {
 //nodeProperties();
 
 
-//Element properties?
+//Element and Attr properties.
 function elementProperties() {
   output.innerHTML = '';
   let div = document.getElementById('4');
   log('tested div: ' + div.outerHTML);
+  log('');
+  log('Element properties:');
   log('div.outerHTML = ' + div.outerHTML);
   log('div.innerHTML = ' + div.innerHTML);
   log('div.tagName = ' + div.tagName);
-  log(div.classList);
-  log(div.className);
-  log(div.attributes);
-  log(div.attributes[0].nodeName);
-  log(div.attributes[0].nodeType);
-  log(div.attributes[0].nodeValue);
-  log(div.attributes[0].name);
-  log(div.attributes[0].value);
+  log('div.id = ' + div.id);
+  log('div.className = ' + div.className);
+  log('div.classList = ' + div.classList);
+  log('div.classList[0] = ' + div.classList[0]);
+  log('div.attributes = ' + div.attributes);
+  log('');
+  log('Attr properties:')
+  log('div.attributes[0] = ' + div.attributes[0]);
+  log('div.attributes[0].nodeType = ' + div.attributes[0].nodeType);
+  log('div.attributes[0].name = ' + div.attributes[0].name);
+  log('div.attributes[0].value = ' + div.attributes[0].value);
 }
-elementProperties();
+//elementProperties();
+
+
+//Selecting Nodes
+function selectingNodes() {
+  output.innerHTML = '';
+  log('tested div: ' + document.getElementById('testHead').outerHTML);
+  log('');
+  log('Selecting nodes:');
+  log('document.getElementById("testHead").outerHTML = ' + document.getElementById('testHead').outerHTML);
+  log('document.getElementsByClassName("testClass")[0].outerHTML = ' + document.getElementsByClassName('testClass')[0].outerHTML);
+  log('document.getElementsByTagName("h1")[0].outerHTML = ' + document.getElementsByTagName('h1')[0].outerHTML);
+  log("document.querySelector('h1').outerHTML = " + document.querySelector('h1').outerHTML);
+  log("document.querySelectorAll('h1')[0].outerHTML = " +document.querySelectorAll('h1')[0].outerHTML);
+}
+//selectingNodes();
 
 //Traversing the DOM
 function traverseDOM() {
+  output.innerHTML = '';
   let div = document.getElementById('1');
   log('tested div: ' + div.outerHTML);
+  log('');
+  log('Traversing the DOM:');
   log('div.parentNode = ' + div.parentNode);
   log('div.childNodes = ' + div.childNodes);
   log('div.childNodes[0].nodeValue = ' + div.childNodes[0].nodeValue);
@@ -73,6 +85,7 @@ function traverseDOM() {
   log('div.firstChild.nextSibling.outerHTML = ' + div.firstChild.nextSibling.outerHTML);
   log('div.lastChild.previousSibling.nodeValue = ' + div.lastChild.previousSibling.nodeValue);
   log('');
+  log('ParentNode mixin and ElementChild methods:');
   log('div.children = ' + div.children);
   log('div.children[0] = ' + div.children[0].outerHTML);
   log('div.firstElementChild.outerHTML = ' + div.firstElementChild.outerHTML);
@@ -84,10 +97,42 @@ function traverseDOM() {
 
 
 
+//Creating, adding, modifying, and removing nodes
+function modifyNodes() {
+  output.innerHTML = '';
+  let div = document.createElement('div');
+  log('tested div: ' + div.outerHTML);
+  log('');
+  log('Modifying nodes:');
+  log("document.createElement('div') = " + document.createElement('div'));
+  log('div.outerHTML = ' + div.outerHTML);
+  div.appendChild(document.createElement('p'));
+  log("EXECUTED: div.appendChild(document.createElement('p'))");
+  log('div.outerHTML = ' + div.outerHTML);
+  div.insertBefore(document.createElement('h1'), div.firstElementChild);
+  log("EXECUTED: div.insertBefore(document.createElement('h1'), div.firstElementChild)");
+  log('div.outerHTML = ' + div.outerHTML);
+  div.replaceChild(document.createElement('span'), div.lastElementChild);
+  log("EXECUTED: div.replaceChild(document.createElement('span'), div.lastElementChild)");
+  log('div.outerHTML = ' + div.outerHTML);
+  div.removeChild(div.lastElementChild);
+  log("EXECUTED: div.removeChild(div.lastElementChild)");
+  log('div.outerHTML = ' + div.outerHTML);
+  div.appendChild(div.cloneNode(true));
+  log("EXECUTED: div.appendChild(div.cloneNode(true));");
+  log('div.outerHTML = ' + div.outerHTML);
+  div.appendChild(div.cloneNode());
+  log("EXECUTED: div.appendChild(div.cloneNode());");
+  log('div.outerHTML = ' + div.outerHTML);
+}
+//modifyNodes();
+
+
 //Accessing and modifying HTML attributes and respective DOM properties
-function logAttributeNotes() {
-  //Accessing and modifying HTML attributes and respective DOM properties
+function modifyAttributes() {
+  output.innerHTML = '';
   log('Accessing and modifying HTML attributes and respective DOM properties:')
+  log('');
   let elem1 = document.getElementById('elem1');
   log('elem1.outerHTML = ' + elem1.outerHTML)
   log('');
@@ -137,24 +182,50 @@ function logAttributeNotes() {
   log('Removing attributes:')
   log('elem1.outerHTML = ' + elem1.outerHTML);
   elem1.removeAttribute('id');
-  elem1.removeAttribute('class');
   elem1.removeAttribute('data-custom1');
   elem1.removeAttribute('data-custom2');
   log("EXECUTED: elem1.removeAttribute('id');")
-  log("EXECUTED: elem1.removeAttribute('class');")
   log("EXECUTED: elem1.removeAttribute('data-custom1');")
   log("EXECUTED: elem1.removeAttribute('data-custom2');")
   log('elem1.outerHTML = ' + elem1.outerHTML);
-}
+  log('');
 
-function myChange() {
-  document.getElementById("demo").innerHTML = "Paragraph <em>changed</em>."; //innerHTML is needed here to parse HTML(slower).
+  //Modifying classes with classList
+  log('Modifying classes with classList:');
+  log('elem1.outerHTML = ' + elem1.outerHTML);
+  log('elem1.classList = ' + elem1.classList);
+  log('elem1.classList.length = ' + elem1.classList.length);
+  elem1.classList.add('class3')
+  log("EXECUTED: elem1.classList.add('class3')");
+  log('elem1.classList = ' + elem1.classList);
+  elem1.classList.remove('class2');
+  log("EXECUTED: elem1.remove('class2')");
+  log(elem1.classList);
+  log("elem1.contains('class3') = " + elem1.classList.contains('class3'));
+  elem1.classList.replace('class3', 'class5');
+  log("EXECUTED: elem1.classList.replace('class3', 'class5')");
+  log(elem1.classList);
+  elem1.classList.toggle('class6');
+  log("EXECUTED: elem1.classList.toggle('class6')");
+  log(elem1.classList);
 }
-document.getElementById("button1").onclick = myChange; //Not to be used as event listeners are better.
+//modifyAttributes();
 
-function myChange2() {
-  document.getElementById('demo2').textContent = 'Text changed!'; //testContent does not parse HTML(faster);
-  document.getElementById('demo2').style.color = 'blue';
+
+//Events
+function events() {
+  output.innerHTML = '';
+  log('Events:');
+  log('');
+  log("EXECUTED: let par = document.getElementById('par')");
+  log("EXECUTED: let button = document.getElementById('button')");
+  log("EXECUTED: let myChange = () => par.innerHTML = 'Test text changed'");
+  log("EXECUTED: button.addEventListener('click', myChange)");
+  let par = document.getElementById('par');
+  let button = document.getElementById('button');
+  let myChange = () => par.innerHTML = 'Test text changed';
+  button.addEventListener('click', myChange);
 }
+//events();
 
 

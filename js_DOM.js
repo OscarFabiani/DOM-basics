@@ -79,9 +79,6 @@ ParentNode.firstElementChild: return the first Element node that is child of Par
 
 ParentNode.lastElementChild: return the last Element node that is child of ParentNode.
 
-ParentNode.querySelector();
-ParentNode.querySelectorAll();
-
 
 DOCUMENT INTERFACE:
 
@@ -135,6 +132,7 @@ Element.previousElementSibling:
 
 Element.nextElementSibling:
 
+
 Methods:
 
 Element.getElementsByClassName(classNames): returns a live HTMLCollection that contains all decendants of the current element that possess
@@ -158,8 +156,6 @@ Element.setAttribute(name, value): sets an attribute.
 NOTE: DOM properties should be used instead of this except rare cases(custom attributes, etc.).
 
 Element.removeAttribute(name): removes an attribute.
-
-ELement.getAttributeNames(): returns an array of attrute names
 
 
 
@@ -204,12 +200,12 @@ NOTE: Multi-word styles(seperated by hyphens) are converted to camelCasing when 
 style.backgroundColor)
 
 
-//ADDRESS TODO - CONTINUE FROM ELEMENT PROPERTIES FUNCTION
+//ADDRESS TODO
 
 
 TO DO:
-Add notes and examples for creating, adding, modifying, and removing nodes.
-Add notes and examples for events.
+Add notes for all remaining properties and methods.
+Clean up examples UI.
 
 QUESTIONS BEING ASKED:
 Have I demonstrated all of these in my DOM-test project?
