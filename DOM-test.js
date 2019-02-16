@@ -1,5 +1,14 @@
 let output = document.querySelector('#output');
 
+document.getElementById('nodeProp').addEventListener('click', nodeProperties);
+document.getElementById('elemProp').addEventListener('click', elementProperties);
+document.getElementById('selectNode').addEventListener('click', selectingNodes);
+document.getElementById('traverseDOM').addEventListener('click', traverseDOM);
+document.getElementById('modifyNode').addEventListener('click', modifyNodes);
+document.getElementById('modifyAttr').addEventListener('click', modifyAttributes);
+document.getElementById('events').addEventListener('click', events);
+
+
 //Custom logging function
 function log(msg) {
   output.appendChild(document.createTextNode(msg));
@@ -11,9 +20,10 @@ function log(msg) {
 function nodeProperties() {
   output.innerHTML = ''
   let div = document.getElementById('1');
+  log('Node properties:');
+  log('');
   log('tested div: ' + div.outerHTML);
   log('');
-  log('Node properties:');
   log('document.nodeName = ' + document.nodeName);
   log("document.nodeType = " + document.nodeType);
   log("div.nodeName = " + div.nodeName);
@@ -35,9 +45,10 @@ function nodeProperties() {
 function elementProperties() {
   output.innerHTML = '';
   let div = document.getElementById('4');
+  log('Element properties:');
+  log('');
   log('tested div: ' + div.outerHTML);
   log('');
-  log('Element properties:');
   log('div.outerHTML = ' + div.outerHTML);
   log('div.innerHTML = ' + div.innerHTML);
   log('div.tagName = ' + div.tagName);
@@ -59,14 +70,15 @@ function elementProperties() {
 //Selecting Nodes
 function selectingNodes() {
   output.innerHTML = '';
-  log('tested div: ' + document.getElementById('testHead').outerHTML);
-  log('');
   log('Selecting nodes:');
-  log('document.getElementById("testHead").outerHTML = ' + document.getElementById('testHead').outerHTML);
+  log('');
+  log('tested div: ' + document.getElementById('nodeProp').outerHTML);
+  log('');
+  log('document.getElementById("nodeProp").outerHTML = ' + document.getElementById('nodeProp').outerHTML);
   log('document.getElementsByClassName("testClass")[0].outerHTML = ' + document.getElementsByClassName('testClass')[0].outerHTML);
-  log('document.getElementsByTagName("h1")[0].outerHTML = ' + document.getElementsByTagName('h1')[0].outerHTML);
-  log("document.querySelector('h1').outerHTML = " + document.querySelector('h1').outerHTML);
-  log("document.querySelectorAll('h1')[0].outerHTML = " +document.querySelectorAll('h1')[0].outerHTML);
+  log('document.getElementsByTagName("button")[0].outerHTML = ' + document.getElementsByTagName('button')[0].outerHTML);
+  log("document.querySelector('button').outerHTML = " + document.querySelector('button').outerHTML);
+  log("document.querySelectorAll('button')[0].outerHTML = " +document.querySelectorAll('button')[0].outerHTML);
 }
 //selectingNodes();
 
@@ -74,9 +86,10 @@ function selectingNodes() {
 function traverseDOM() {
   output.innerHTML = '';
   let div = document.getElementById('1');
+  log('Traversing the DOM:');
+  log('');
   log('tested div: ' + div.outerHTML);
   log('');
-  log('Traversing the DOM:');
   log('div.parentNode = ' + div.parentNode);
   log('div.childNodes = ' + div.childNodes);
   log('div.childNodes[0].nodeValue = ' + div.childNodes[0].nodeValue);
@@ -101,9 +114,10 @@ function traverseDOM() {
 function modifyNodes() {
   output.innerHTML = '';
   let div = document.createElement('div');
+  log('Modifying nodes:');
+  log('');
   log('tested div: ' + div.outerHTML);
   log('');
-  log('Modifying nodes:');
   log("document.createElement('div') = " + document.createElement('div'));
   log('div.outerHTML = ' + div.outerHTML);
   div.appendChild(document.createElement('p'));
@@ -131,7 +145,7 @@ function modifyNodes() {
 //Accessing and modifying HTML attributes and respective DOM properties
 function modifyAttributes() {
   output.innerHTML = '';
-  log('Accessing and modifying HTML attributes and respective DOM properties:')
+  log('Modifying HTML attributes and respective DOM properties:')
   log('');
   let elem1 = document.getElementById('elem1');
   log('elem1.outerHTML = ' + elem1.outerHTML)
@@ -181,11 +195,7 @@ function modifyAttributes() {
   //Removing attributes:
   log('Removing attributes:')
   log('elem1.outerHTML = ' + elem1.outerHTML);
-  elem1.removeAttribute('id');
-  elem1.removeAttribute('data-custom1');
   elem1.removeAttribute('data-custom2');
-  log("EXECUTED: elem1.removeAttribute('id');")
-  log("EXECUTED: elem1.removeAttribute('data-custom1');")
   log("EXECUTED: elem1.removeAttribute('data-custom2');")
   log('elem1.outerHTML = ' + elem1.outerHTML);
   log('');
@@ -208,6 +218,7 @@ function modifyAttributes() {
   elem1.classList.toggle('class6');
   log("EXECUTED: elem1.classList.toggle('class6')");
   log(elem1.classList);
+
 }
 //modifyAttributes();
 

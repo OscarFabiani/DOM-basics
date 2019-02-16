@@ -1,16 +1,16 @@
 body {
-  background-color: gray;
+  background-color: rgb(61, 78, 31);
+  color: aqua;
   text-align: center;
 }
-#testHead {
-  color: blue;
+button {
+  background-color: gold;
+  color: crimson;
+  font-weight: bolder;
 }
-#testHead:hover {
-  cursor: pointer;
+[id='1'] {
+  visibility: hidden;
 }
-.square {
-  margin: auto;
-  height: 50px;
-  width: 200px;
-  border: 10px solid black;
+[id='4'] {
+  visibility: hidden;
 }

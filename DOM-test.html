@@ -3,14 +3,23 @@
     <link rel="stylesheet" type="text/css" href="DOM-test.css" />
   </head>
   <body>
+    <div id="menu">
+        <button id="nodeProp" class="testClass">Node Properties</button>
+        <button id="elemProp">Element Properties</button>
+        <button id="selectNode">Selecting Nodes</button>
+        <button id="traverseDOM">Traversing DOM</button>
+        <button id="modifyNode">Modifying Nodes</button>
+        <button id="modifyAttr">Modifying Attributes</button>
+        <button id="events">Events</button>
+      </div>
+    <hr>
     <div id="output">Output</div>
     <hr>
-    <div id="elem1" data-custom1="custVal1"></div>
-    <hr>
-    <p id="par">Test text</p>
-    <button id="button">Click me</button>
+    <p id="par">Test text: id="par"</p>
+    <button id="button">Click me: id="button"</button>
     <div id="1">text1<div id="2"></div>text2<div id="3"></div></div>
     <div id="4" class="class4 class5">text3</div>
+    <div id="elem1" data-custom1="custVal1"></div>
     <script type="text/javascript" src="DOM-test.js"></script>
   </body>
 </html>

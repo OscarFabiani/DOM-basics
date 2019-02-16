@@ -9,17 +9,13 @@ DOM and JavaScript: JavaScript uses the DOM as a model or notion of web pages, H
 parts(elements). Every element in a document is part of the Document Object Model for that document and can be accessed and manipulated
 using the DOM and a scripting language like JavaScript.
 
-Basic DOM tasks: Querying DOM, modifying DOM elements, modifying classes and attributes, listening to events, and animation.
-
-DOM navigation: An HTML page is represented as a node tree with the document itself as the root of the tree.
+Basic DOM tasks: Querying the DOM, traversing the DOM, modifying DOM elements, modifying classes and attributes, listening to events, and animation.
 
 
-Nodes/objects: There are 6 different types of nodes/objects in the DOM. These are the document node, root node, element node, text node,
+Nodes/objects: There are 6 different types of nodes/objects in the DOM. These are window object, document node, element node, text node,
 attribute node, and comment node.
 
 Document node: This is the entire document.
-
-Root node: This is the <html> tag.
 
 Element node: Every HTML element.
 
@@ -29,12 +25,8 @@ Attribute node: Every HTML attribute.
 
 Comment node: All comments in the document.
 
-Window node: This is the browser tab.
-
-
-Node properties: The node interface/object's properties and methods are inherited by the document, element, text, comment, and attribute
-nodes. Some common node properties are nodeName, nodeValue, and nodeType which uses numbers as references(1 = element, etc.). Properties that
-reference all types of nodes are childNodes, parentNode, firstChild, lastChild, nextSibling, and previousSibling.
+Window object: This is the browser tab.
+NOTE: This can also be referenced with document.defaultView.
 
 
 
@@ -42,9 +34,20 @@ NODE INTERFACE:
 
 Properties:
 
-Node.nodeName
-Node.nodeValue
-Node.nodeType
+Node.nodeName: returns a DOMString representing the name of the node? The structure of this DOMString changes depending on the node type.
+Attr: the value of Attr.name
+Comment: '#comment'
+Document: '#document'
+Element: the value of Element.tagName
+Text: '#text'
+
+Node.nodeValue: returns or sets text content for Text and Comment nodes and Attr.value for attribute nodes. Returns null for other node types.
+
+Node.nodeType: returns an integer representing the node type.
+Node.ELEMENT_NODE: 1
+Node.TEXT_NODE: 3
+Node.COMMENT_NODE: 8
+Node.DOCUMENT_NODE: 9
 
 Node.parentNode: returns the parent Node of Node, else null.
 
@@ -63,11 +66,16 @@ NOTE: While HTMLElement.innerText is similar though different in ways that may b
 
 Methods:
 
-Node.appendChild()
-Node.insertBefore()
-Node.replaceChild()
-Node.removeChild()
-Node.cloneNode()
+Node.appendChild(childNode): Adds childNode as the last child of Node.
+
+Node.insertBefore(newNode, referenceNode): Inserts newNode before referenceNode as a childNode of Node.
+
+Node.replaceChild(newChild, oldChild): Replaces oldChild with newChild as a childNode of Node.
+
+Node.removeChild(childNode): removes and returns childNode which must be a child of Node.
+
+Node.cloneNode([deep]): returns a duplicate of Node. Deep is an optional parameter set to false by default. If false, none of Node's children are cloned. If
+true, all of Node's children are included in the duplicate.
 
 
 
@@ -80,7 +88,7 @@ ParentNode.firstElementChild: return the first Element node that is child of Par
 ParentNode.lastElementChild: return the last Element node that is child of ParentNode.
 
 
-DOCUMENT INTERFACE:
+DOCUMENT INTERFACE: Inherits from Node and EventTarget.
 
 Methods:
 
@@ -100,12 +108,13 @@ document.getElementsByClassName(classNames): returns a live HTMLCollection that 
 NOTE: classNames is a space delimited list of class names.
 
 document.querySelector(selectors): returns the first element node within the document, in document order, that matches selectors(string).
+NOTE: Selectors is a complex DOMString that can select specific elements through many parameters.
 
 document.querySelectorAll(selectors): returns a NodeList of element nodes within the document which match the selectors(string).
 
 
 
-ELEMENT INTERFACE:
+ELEMENT INTERFACE: Inherits from Node and EventTarget.
 
 Properties:
 
@@ -128,9 +137,13 @@ Element.outerHTML: A DOMString representing the markup of the element including 
 
 Element.attributes: returns a NamedNodeMap object containing the an attr object for each assigned attribute of the corresponding HTML element.
 
-Element.previousElementSibling:
+Element.previousElementSibling: returns the element before Element in it's parent node's children list.
 
-Element.nextElementSibling:
+Element.nextElementSibling: returns the element after Element in it's parent node's children list.
+
+HTMLElement.style: An object used to get and set the inline style of HTMLElement.
+NOTE: Multi-word styles(seperated by hyphens) are converted to camelCasing when set as properties of the style object(background-color becomes
+style.backgroundColor).
 
 
 Methods:
@@ -174,8 +187,9 @@ ATTRIBUTE(ATTR) INTERFACE: This interface represents a DOM element's attribute a
 
 Properties:
 
-Attr.name
-Attr.value
+Attr.name: The attributes name.
+
+Attr.value: The attributes value.
 
 
 
@@ -183,42 +197,24 @@ DOMTOKENLIST INTERFACE:
 
 Properties:
 
-DOMTokenList.length
+DOMTokenList.length: An integer representing the number of tokens within DOMTokenList.
 
 Methods:
 
-DOMTokenList.add()
-DOMTokenList.remove()
-DOMTokenList.contains()
-DOMTokenList.toggle()
-DOMTokenList.replace()
+DOMTokenList.add(token): Adds token to DOMTokenList.
+
+DOMTokenList.remove(token): Removes token from DOMTokenList.
+
+DOMTokenList.contains(token): Returns true is DOMTokenList contains token, else returns false.
+
+DOMTokenList.toggle(token): If DOMTokenList contains token, removes token from DOMTokenList and returns false, else adds token to DOMTokenList and returns true.
+
+DOMTokenList.replace(oldToken, newToken): Replaces oldToken with newToken and returns true if successful, else returns false.
 
 
-
-STYLE PROPERTY/OBJECT:
-NOTE: Multi-word styles(seperated by hyphens) are converted to camelCasing when set as properties of the style object(background-color becomes
-style.backgroundColor)
-
-
-//ADDRESS TODO
-
-
-TO DO:
-Add notes for all remaining properties and methods.
-Clean up examples UI.
-
-QUESTIONS BEING ASKED:
-Have I demonstrated all of these in my DOM-test project?
-Am I ready to move on to creating a project(s) utilizing DOM/Vanilla.JS?
-
-
-querySelector() basically: This method matches an element with one or more CSS selectors and thus can do the job of getElementById(),
-getElementsByClassName(), getElementsByTagName() and more including much more specific criteria using the robuts selectors API.
 
 
 SIDE TOPICS:
-
-Selector API: The selector passed into querySelector() can be a complex DOMString that can select specific elements through many parameters.
 
 Utility of custom attributes: Regarding styling, modifying attributes is sometimes easier than modifying classes. Regarding scripting, custom
 attributes can be used to "mark" elements for JavaScript.
@@ -227,27 +223,17 @@ Utility of data- attributes and the dataset property: specifies an attribute as 
 custom name used.
 NOTE: custom attributes can't contain capital letters.
 
-
-
-ACCESSING AND MODIFYING ATTRIBUTES: Attributes should be accessed and modified through properties in almost all cases(custom attributes being
-and exception). Attributes should be removed through the Element.removeAttribute() method.
-
-HTML attributes and DOM properties: The DOM creates nodes/objects for each element in an HTML file. The attributes of these elements mostly
-become properties of their respective node/object. Standard attributes, which not only means standard to HTML but also standard to each
-specific element(type would be standars for <input> but not for <body>), are set as properties of the corresponding element node. These
-properties can be accessed by dot notation but other attributes can't. These can be accessed by the Element.has/get/set/removeAttribute
-methods. Most of these properties are derived from their corresponding attributes and synchronize when modified through scripting, but these
-are a few which either don't translate identically from attribute to property(class translates to className, href attribute and property values
-are different) or don't synchronize(value and checked attributes synchronize once to their respective properties but don't update). Also, DOM
-element object properties(names and values) tend to be more consistent across browsers. Lastly, DOM properties are not always strings(checked
-property is a boolean, style property is an object) while attribute values are always strings.
-
-
-
-
-onclick HTML property vs addEventListener in JavaScript: It seems like using addEventListener is a better method.
-
-
+Attributes vs properties: Attributes should be accessed and modified through properties in almost all cases(custom attributes being
+an exception). Attributes should be removed through the Element.removeAttribute() method. The DOM creates nodes/objects for each element
+in an HTML file. The attributes of these elements mostly become properties of their respective node/object. Standard attributes, which not
+only means standard to HTML but also standard to each specific element(type would be standars for <input> but not for <body>), are set as
+properties of the corresponding element node. These properties can be accessed by dot notation but other attributes can't. These can be
+accessed by the Element.has/get/set/removeAttribute methods. Most of these properties are derived from their corresponding attributes and
+synchronizewhen modified through scripting, but these are a few which either don't translate identically from attribute to property(class
+translates to className, href attribute and property values are different) or don't synchronize(value and checked attributes synchronize once
+to their respective properties but don't update). Also, DOM element object properties(names and values) tend to be more consistent across
+browsers. Lastly, DOM properties are not always strings(checked property is a boolean, style property is an object) while attribute values are
+always strings.
 
 
 */
